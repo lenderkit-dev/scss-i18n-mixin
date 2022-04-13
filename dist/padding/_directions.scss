@@ -1,0 +1,15 @@
+@mixin padding-left($val) {
+  padding-inline-start: $val;
+}
+
+@mixin padding-right($val) {
+  padding-inline-end: $val;
+}
+
+@mixin padding-top($val) {
+  padding-block-start: $val;
+}
+
+@mixin padding-bottom($val) {
+  padding-block-end: $val;
+}

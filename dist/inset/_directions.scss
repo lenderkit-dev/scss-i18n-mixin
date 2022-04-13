@@ -1,0 +1,19 @@
+@mixin top($val) {
+  top: auto;
+  inset-block-start: $val;
+}
+
+@mixin bottom($val) {
+  bottom: auto;
+  inset-block-end: $val;
+}
+
+@mixin left($val) {
+  left: auto;
+  inset-inline-start: $val;
+}
+
+@mixin right($val) {
+  right: auto;
+  inset-inline-end: $val;
+}

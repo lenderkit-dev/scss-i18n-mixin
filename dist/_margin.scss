@@ -1,0 +1,43 @@
+@mixin margin-left($val) {
+  margin-inline-start: $val;
+}
+
+@mixin margin-right($val) {
+  margin-inline-end: $val;
+}
+
+@mixin margin-top($val) {
+  margin-block-start: $val;
+}
+
+@mixin margin-bottom($val) {
+  margin-block-end: $val;
+}
+
+@mixin margin($val) {
+  $valLength: length($val);
+  @if $valLength == 4 {
+    @include margin-top(nth($val, 1));
+    @include margin-right(nth($val, 2));
+    @include margin-bottom(nth($val, 3));
+    @include margin-left(nth($val, 4));
+  }
+  @if $valLength == 3 {
+    @include margin-top(nth($val, 1));
+    @include margin-right(nth($val, 2));
+    @include margin-bottom(nth($val, 3));
+    @include margin-left(nth($val, 2));
+  }
+  @if $valLength == 2 {
+    @include margin-top(nth($val, 1));
+    @include margin-right(nth($val, 2));
+    @include margin-bottom(nth($val, 1));
+    @include margin-left(nth($val, 2));
+  }
+  @if $valLength == 1 {
+    @include margin-top($val);
+    @include margin-right($val);
+    @include margin-bottom($val);
+    @include margin-left($val);
+  }
+}

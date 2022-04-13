@@ -1,0 +1,55 @@
+@mixin top($val) {
+  @supports (inset-block-start: 0) {
+    top: auto;
+    inset-block-start: $val;
+  }
+  @supports not (inset-block-start: 0) {
+    top: $val;
+  }
+}
+
+@mixin bottom($val) {
+  @supports (inset-block-end: 0) {
+    bottom: auto;
+    inset-block-end: $val;
+  }
+  @supports not (inset-block-end: 0) {
+    bottom: $val;
+  }
+}
+
+@mixin left($val) {
+  --inset-inline-start: #{$val};
+
+  @supports (inset-inline-start: 0) {
+    left: auto;
+    inset-inline-start: var(--inset-inline-start);
+  }
+
+  @supports not (inset-inline-start: 0) {
+    left: var(--inset-inline-start);
+
+    [dir='rtl'] & {
+      right: var(--inset-inline-start);
+      left: var(--inset-inline-end, auto);
+    }
+  }
+}
+
+@mixin right($val) {
+  --inset-inline-end: #{$val};
+
+  @supports (inset-inline-end: 0) {
+    right: auto;
+    inset-inline-end: var(--inset-inline-end);
+  }
+
+  @supports not (inset-inline-end: 0) {
+    right: var(--inset-inline-end);
+
+    [dir='rtl'] & {
+      left: var(--inset-inline-end);
+      right: var(--inset-inline-start, auto);
+    }
+  }
+}

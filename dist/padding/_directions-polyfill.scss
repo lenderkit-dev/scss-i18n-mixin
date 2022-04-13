@@ -1,0 +1,53 @@
+@mixin padding-left($val) {
+  --padding-inline-start: #{$val};
+
+  @supports (padding-inline-start: 0) {
+    padding-inline-start: var(--padding-inline-start);
+  }
+
+  @supports not (padding-inline-start: 0) {
+    padding-left: var(--padding-inline-start);
+
+    [dir='rtl'] & {
+      padding-right: var(--padding-inline-start);
+      padding-left: var(--padding-inline-end, 0);
+    }
+  }
+}
+
+@mixin padding-right($val) {
+  --padding-inline-end: #{$val};
+
+  @supports (padding-inline-end: 0) {
+    padding-inline-end: var(--padding-inline-end);
+  }
+
+  @supports not (padding-inline-end: 0) {
+    padding-right: var(--padding-inline-end);
+
+    [dir='rtl'] & {
+      padding-left: var(--padding-inline-end);
+      padding-right: var(--padding-inline-start, 0);
+    }
+  }
+}
+
+@mixin padding-top($val) {
+  @supports (padding-block-start: 0) {
+    padding-block-start: $val;
+  }
+
+  @supports not (padding-block-start: 0) {
+    padding-top: $val;
+  }
+}
+
+@mixin padding-bottom($val) {
+  @supports (padding-block-end: 0) {
+    padding-block-end: $val;
+  }
+
+  @supports not (padding-block-end: 0) {
+    padding-bottom: $val;
+  }
+}

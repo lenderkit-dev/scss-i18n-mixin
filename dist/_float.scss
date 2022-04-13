@@ -1,0 +1,27 @@
+@mixin float($val) {
+  @if ($val == 'left') {
+    @supports (float: inline-start) {
+      float: inline-start;
+    }
+    @supports not (float: inline-start) {
+      float: left;
+      [dir='rtl'] & {
+        float: right;
+      }
+    }
+  }
+  @if ($val == 'right') {
+    @supports (float: inline-end) {
+      float: inline-end;
+    }
+    @supports not (float: inline-end) {
+      float: right;
+      [dir='rtl'] & {
+        float: left;
+      }
+    }
+  }
+  @if (($val != 'left') and ($val != 'right')) {
+    float: $val;
+  }
+}

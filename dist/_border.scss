@@ -1,0 +1,273 @@
+// Common
+
+@mixin border-left($val) {
+  border-inline-start: $val;
+}
+
+@mixin border-right($val) {
+  border-inline-end: $val;
+}
+
+@mixin border-top($val) {
+  border-block-start: $val;
+}
+
+@mixin border-bottom($val) {
+  border-block-end: $val;
+}
+
+@mixin border($val) {
+  @include border-top($val);
+  @include border-right($val);
+  @include border-bottom($val);
+  @include border-left($val);
+}
+
+// Size
+
+@mixin border-left-width($val) {
+  border-inline-start-width: $val;
+}
+@mixin border-right-width($val) {
+  border-inline-end-width: $val;
+}
+@mixin border-top-width($val) {
+  border-block-start-width: $val;
+}
+@mixin border-bottom-width($val) {
+  border-block-end-width: $val;
+}
+
+@mixin border-width($val) {
+  $argsLength: length($val);
+
+  @if $argsLength == 4 {
+    @include border-top-width(nth($val, 1));
+    @include border-right-width(nth($val, 2));
+    @include border-bottom-width(nth($val, 3));
+    @include border-left-width(nth($val, 4));
+  }
+
+  @if $argsLength == 3 {
+    @include border-top-width(nth($val, 1));
+    @include border-right-width(nth($val, 2));
+    @include border-bottom-width(nth($val, 3));
+    @include border-left-width(nth($val, 2));
+  }
+
+  @if $argsLength == 2 {
+    @include border-top-width(nth($val, 1));
+    @include border-right-width(nth($val, 2));
+    @include border-bottom-width(nth($val, 1));
+    @include border-left-width(nth($val, 2));
+  }
+
+  @if $argsLength == 1 {
+    @include border-top-width($val);
+    @include border-right-width($val);
+    @include border-bottom-width($val);
+    @include border-left-width($val);
+  }
+}
+
+// Style
+
+@mixin border-left-style($val) {
+  border-inline-start-style: $val;
+}
+
+@mixin border-right-style($val) {
+  border-inline-end-style: $val;
+}
+
+@mixin border-top-style($val) {
+  border-block-start-style: $val;
+}
+
+@mixin border-bottom-style($val) {
+  border-block-end-style: $val;
+}
+
+@mixin border-style($val) {
+  $argsLength: length($val);
+
+  @if $argsLength == 4 {
+    @include border-top-style(nth($val, 1));
+    @include border-right-style(nth($val, 2));
+    @include border-bottom-style(nth($val, 3));
+    @include border-left-style(nth($val, 4));
+  }
+
+  @if $argsLength == 3 {
+    @include border-top-style(nth($val, 1));
+    @include border-right-style(nth($val, 2));
+    @include border-bottom-style(nth($val, 3));
+    @include border-left-style(nth($val, 2));
+  }
+
+  @if $argsLength == 2 {
+    @include border-top-style(nth($val, 1));
+    @include border-right-style(nth($val, 2));
+    @include border-bottom-style(nth($val, 1));
+    @include border-left-style(nth($val, 2));
+  }
+
+  @if $argsLength == 1 {
+    @include border-top-style($val);
+    @include border-right-style($val);
+    @include border-bottom-style($val);
+    @include border-left-style($val);
+  }
+}
+
+// Color
+
+@mixin border-left-color($val) {
+  border-inline-start-color: $val;
+}
+
+@mixin border-right-color($val) {
+  border-inline-end-color: $val;
+}
+
+@mixin border-top-color($val) {
+  border-block-start-color: $val;
+}
+
+@mixin border-bottom-color($val) {
+  border-block-end-color: $val;
+}
+
+@mixin border-color($val) {
+  $argsLength: length($val);
+
+  @if $argsLength == 4 {
+    @include border-top-color(nth($val, 1));
+    @include border-right-color(nth($val, 2));
+    @include border-bottom-color(nth($val, 3));
+    @include border-left-color(nth($val, 4));
+  }
+
+  @if $argsLength == 3 {
+    @include border-top-color(nth($val, 1));
+    @include border-right-color(nth($val, 2));
+    @include border-bottom-color(nth($val, 3));
+    @include border-left-color(nth($val, 2));
+  }
+
+  @if $argsLength == 2 {
+    @include border-top-color(nth($val, 1));
+    @include border-right-color(nth($val, 2));
+    @include border-bottom-color(nth($val, 1));
+    @include border-left-color(nth($val, 2));
+  }
+
+  @if $argsLength == 1 {
+    @include border-top-color($val);
+    @include border-right-color($val);
+    @include border-bottom-color($val);
+    @include border-left-color($val);
+  }
+}
+
+// Radius with polyfills
+
+@mixin border-top-left-radius($val) {
+  --border-start-start-radius: #{$val};
+
+  @supports (border-start-start-radius: 0) {
+    border-start-start-radius: var(--border-start-start-radius);
+  }
+
+  @supports not (border-start-start-radius: 0) {
+    border-top-left-radius: var(--border-start-start-radius);
+
+    [dir='rtl'] & {
+      border-top-right-radius: var(--border-start-start-radius);
+      border-top-left-radius: var(--border-start-end-radius, 0);
+    }
+  }
+}
+
+@mixin border-top-right-radius($val) {
+  --border-start-end-radius: #{$val};
+
+  @supports (border-start-end-radius: 0) {
+    border-start-end-radius: var(--border-start-end-radius);
+  }
+
+  @supports not (border-start-end-radius: 0) {
+    border-top-right-radius: var(--border-start-end-radius);
+
+    [dir='rtl'] & {
+      border-top-left-radius: var(--border-start-end-radius);
+      border-top-right-radius: var(--border-start-start-radius, 0);
+    }
+  }
+}
+
+@mixin border-bottom-left-radius($val) {
+  --border-end-start-radius: #{$val};
+
+  @supports (border-end-start-radius: 0) {
+    border-end-start-radius: var(--border-end-start-radius);
+  }
+
+  @supports not (border-end-start-radius: 0) {
+    border-bottom-left-radius: var(--border-end-start-radius);
+
+    [dir='rtl'] & {
+      border-bottom-right-radius: var(--border-end-start-radius);
+      border-bottom-left-radius: var(--border-end-end-radius, 0);
+    }
+  }
+}
+
+@mixin border-bottom-right-radius($val) {
+  --border-end-end-radius: #{$val};
+
+  @supports (border-end-end-radius: 0) {
+    border-end-end-radius: var(--border-end-end-radius);
+  }
+
+  @supports not (border-end-end-radius: 0) {
+    border-bottom-right-radius: var(--border-end-end-radius);
+
+    [dir='rtl'] & {
+      border-bottom-left-radius: var(--border-end-end-radius);
+      border-bottom-right-radius: var(--border-end-start-radius, 0);
+    }
+  }
+}
+
+@mixin border-radius($val) {
+  $argsLength: length($val);
+
+  @if $argsLength == 4 {
+    @include border-top-left-radius(nth($val, 1));
+    @include border-top-right-radius(nth($val, 2));
+    @include border-bottom-right-radius(nth($val, 3));
+    @include border-bottom-left-radius(nth($val, 4));
+  }
+
+  @if $argsLength == 3 {
+    @include border-top-left-radius(nth($val, 1));
+    @include border-top-right-radius(nth($val, 2));
+    @include border-bottom-right-radius(nth($val, 3));
+    @include border-bottom-left-radius(nth($val, 2));
+  }
+
+  @if $argsLength == 2 {
+    @include border-top-left-radius(nth($val, 1));
+    @include border-top-right-radius(nth($val, 2));
+    @include border-bottom-right-radius(nth($val, 1));
+    @include border-bottom-left-radius(nth($val, 2));
+  }
+
+  @if $argsLength == 1 {
+    @include border-top-left-radius($val);
+    @include border-top-right-radius($val);
+    @include border-bottom-right-radius($val);
+    @include border-bottom-left-radius($val);
+  }
+}

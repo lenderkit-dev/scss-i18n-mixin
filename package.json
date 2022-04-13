@@ -1,0 +1,9 @@
+{
+  "name": "scss-i18n-mixin",
+  "version": "1.0.0",
+  "description": "This mixin package is realization CSS logical properties for i18n support in project.",
+  "author": "JustCoded",
+  "peerDependencies": {
+    "sass": "^1.32.0"
+  }
+}

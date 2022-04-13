@@ -1,0 +1,11 @@
+@mixin text-align($val) {
+  @if ($val == 'left') {
+    text-align: start;
+  }
+  @if ($val == 'right') {
+    text-align: end;
+  }
+  @if (($val != 'left') and ($val != 'right')) {
+    text-align: $val;
+  }
+}

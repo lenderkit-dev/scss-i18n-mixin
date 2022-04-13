@@ -1,0 +1,31 @@
+@mixin padding($val) {
+  $valLength: length($val);
+
+  @if $valLength == 4 {
+    @include padding-top(nth($val, 1));
+    @include padding-right(nth($val, 2));
+    @include padding-bottom(nth($val, 3));
+    @include padding-left(nth($val, 4));
+  }
+
+  @if $valLength == 3 {
+    @include padding-top(nth($val, 1));
+    @include padding-right(nth($val, 2));
+    @include padding-bottom(nth($val, 3));
+    @include padding-left(nth($val, 2));
+  }
+
+  @if $valLength == 2 {
+    @include padding-top(nth($val, 1));
+    @include padding-right(nth($val, 2));
+    @include padding-bottom(nth($val, 1));
+    @include padding-left(nth($val, 2));
+  }
+
+  @if $valLength == 1 {
+    @include padding-top($val);
+    @include padding-right($val);
+    @include padding-bottom($val);
+    @include padding-left($val);
+  }
+}
